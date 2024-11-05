@@ -98,11 +98,12 @@ export default function NocturnalDeliveryLanding() {
           <section id="routes" className="py-12 md:py-16 bg-navy-800 bg-opacity-50">
             <div className="container mx-auto px-4">
               <h2 className="text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-center">Rutas y Tarifas</h2>
-              <div className="overflow-x-auto">
+              <div className="overflow-x-auto flex flex-col justify-center items-center">
                 <table className="w-full text-left border-collapse">
                   <thead>
                     <tr className="bg-navy-700">
                       <th className="p-3">Día</th>
+                      <th className="p-3">Recoleccion</th>
                       <th className="p-3">Destino</th>
                       <th className="p-3">Tarifa</th>
                     </tr>
@@ -110,16 +111,19 @@ export default function NocturnalDeliveryLanding() {
                   <tbody>
                     <tr className="border-b border-navy-600">
                       <td className="p-3">Lunes</td>
+                      <td className="p-3">Alajuela-Heredia-San Jose</td>
                       <td className="p-3">Cartago</td>
                       <td className="p-3">4,000 colones</td>
                     </tr>
                     <tr className="border-b border-navy-600">
                       <td className="p-3">Martes</td>
+                      <td className="p-3">Alajuela-Heredia-San Jose</td>
                       <td className="p-3">San Ramón</td>
                       <td className="p-3">3,000 colones</td>
                     </tr>
                     <tr className="border-b border-navy-600">
                       <td className="p-3">Miércoles</td>
+                      <td className="p-3">Alajuela-Heredia-San Jose</td>
                       <td className="p-3">Puntarenas</td>
                       <td className="p-3">5,000 colones</td>
                     </tr>
@@ -128,7 +132,9 @@ export default function NocturnalDeliveryLanding() {
                       <td className="p-3" colSpan={2}>Ubicaciones y tarifas variables (contáctanos para más información)</td>
                     </tr>
                   </tbody>
+                  
                 </table>
+                <p className='mt-5'>Consulta por enviar un paquete cuando el mensajero te visite fuera del gam</p>
               </div>
             </div>
           </section>
@@ -201,15 +207,15 @@ export default function NocturnalDeliveryLanding() {
                   <h4 className="text-lg font-semibold mb-2">Contacto</h4>
                   <div className="flex items-center mb-2">
                     <Phone className="text-yellow-300 mr-2" size={16} />
-                    <span>+506 1234-5678</span>
+                    <span>+506 6389 4824</span>
                   </div>
                   <div className="flex items-center mb-2">
                     <Mail className="text-yellow-300 mr-2" size={16} />
-                    <span>info@nocturnaexpress.cr</span>
+                    <span>rivcodecra@gmail.com</span>
                   </div>
                   <div className="flex items-center">
                     <MapPin className="text-yellow-300 mr-2" size={16} />
-                    <span>San José, Costa Rica</span>
+                    <span>Alajuela, Costa Rica</span>
                   </div>
                 </div>
                 <div className="w-full md:w-1/3">

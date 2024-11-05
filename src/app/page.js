@@ -13,6 +13,13 @@ export default function NocturnalDeliveryLanding() {
     }
   `;
 
+  const rotateKeyframes = `
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+`;
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Formulario enviado');      
@@ -20,9 +27,15 @@ export default function NocturnalDeliveryLanding() {
   
   return (
     <>
-      <style>{twinkleKeyframes}</style>
-      <div className="min-h-screen bg-black text-white font-sans">
-        <div className="fixed inset-0 z-0">
+      <style>{`
+        ${twinkleKeyframes}
+        ${rotateKeyframes}
+        .rotating-background {
+          animation: rotate 120s linear infinite;
+        }
+      `}</style>
+      <div className="min-h-screen bg-black text-white font-sans overflow-hidden">
+        <div className="fixed inset-0 z-0 rotating-background">
           {[...Array(300)].map((_, i) => (
             <div
               key={i}

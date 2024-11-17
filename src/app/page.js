@@ -1,8 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import {
-  Moon,
-  Star,
   Truck,
   Camera,
   FileText,
@@ -13,11 +11,37 @@ import {
   Menu,
   X,
 } from "lucide-react";
+import "react-toastify/dist/ReactToastify.css";
+import { toast, ToastContainer } from "react-toastify";
+
+
 export default function NocturnalDeliveryLanding() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [shootingStars, setShootingStars] = useState([]);
   const [fixedStars, setFixedStars] = useState([]);
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = {
+      senderName: e.target.senderName.value,
+      receiverName: e.target.receiverName.value,
+      senderPhone: e.target.senderPhone.value,
+      receiverPhone: e.target.receiverPhone.value,
+      orderDescription: e.target.orderDescription.value,
+      orderDate: e.target.orderDate.value,
+    };
+  
+    console.log(formData)
+    setIsModalOpen(false)
+    toast.success("Pedido enviado correctamente 🎉");
+    toast.error("Error de conexión con el servidor 💔");
+    
+  };
+  
+
 
   const twinkleKeyframes = `
     @keyframes twinkle {
@@ -62,18 +86,16 @@ export default function NocturnalDeliveryLanding() {
         top: Math.random() * 100,
         left: Math.random() * 100,
         animationDelay: Math.random() * 10,
-        animationDuration: Math.random() * 10 + 2,
+        animationDuration: Math.random() * 3 + 2,
       }))
     );
   }, []);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Formulario enviado");
-  };
+
 
   return (
     <>
+    
       <style>{`
         ${twinkleKeyframes}
         ${shootingStarKeyframes}
@@ -82,11 +104,23 @@ export default function NocturnalDeliveryLanding() {
           width: 2px;
           height: 2px;
           background: white;
-          border-radius: 50%;
-          animation: shootingStar 1s linear forwards;
+          border-radius: 100%;
+          animation: shootingStar 0.7s linear forwards;
         }
       `}</style>
       <div className="min-h-screen bg-black text-white font-sans overflow-hidden">
+      <ToastContainer
+  position="top-right"
+  autoClose={3000}
+  hideProgressBar={false}
+  newestOnTop={false}
+  closeOnClick
+  rtl={false}
+  pauseOnFocusLoss
+  draggable
+  pauseOnHover
+  theme="dark"
+/>
         <div className="fixed inset-0 z-0">
           {fixedStars.map((star) => (
             <div
@@ -104,7 +138,7 @@ export default function NocturnalDeliveryLanding() {
                   (Math.random() * 8 + 4) +
                   "px rgba(255, 255, 255, 0.7)",
                 background:
-                  "radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 60%)",
+                  "radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 50%)",
               }}
               aria-hidden="true"
             />
@@ -431,30 +465,31 @@ export default function NocturnalDeliveryLanding() {
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
                     <label
-                      htmlFor="senderCedula"
+                      htmlFor="senderName"
                       className="block text-sm font-medium text-white"
                     >
-                      Cédula del Remitente
+                      Nombre del Remitente
                     </label>
                     <input
                       type="text"
-                      id="senderCedula"
-                      name="senderCedula"
+                      id="senderName"
+                      name="senderName"
                       required
                       className="mt-1 block w-full px-3 py-2 bg-black border border-2 border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-white font-bold"
                     />
                   </div>
                   <div>
                     <label
-                      htmlFor="receiverCedula"
+                      htmlFor="receiverName"
                       className="block text-sm font-medium text-white"
                     >
-                      Cédula del Destinatario
+                      Nombre del Destinatario
                     </label>
                     <input
                       type="text"
-                      id="receiverCedula"
-                      name="receiverCedula"
+                      id="receiverName"
+                      name="receiverName"
+                      placeholder="Opcional"
                       required
                       className="mt-1 block w-full px-3 py-2 bg-black border border-2  border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-white font-bold"
                     />
@@ -485,6 +520,7 @@ export default function NocturnalDeliveryLanding() {
                       type="tel"
                       id="receiverPhone"
                       name="receiverPhone"
+                      placeholder="Opcional"
                       required
                       className="mt-1 block w-full px-3 py-2 bg-black border border-2  border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-white font-bold"
                     />
@@ -516,9 +552,12 @@ export default function NocturnalDeliveryLanding() {
                       id="orderDate"
                       name="orderDate"
                       required
-                      className="mt-1 block w-full px-3 py-2 bg-black border border-2  border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-white font-bold"
+                      min="2024-01-01"
+                      max="2024-12-31"
+                      className="mt-1 block w-full px-3 py-2 bg-black border border-2 border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-white font-bold"
                     />
                   </div>
+
                   <button
                     type="submit"
                     className="w-full bg-blue-300 text-navy-900 px-4 py-2 text-black font-bold rounded-md  hover:bg-blue-400 transition duration-300 shadow-md hover:shadow-lg"

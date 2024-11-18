@@ -11,8 +11,9 @@ import {
   Menu,
   X,
 } from "lucide-react";
-import "react-toastify/dist/ReactToastify.css";
-import { toast, ToastContainer } from "react-toastify";
+
+//import "react-toastify/dist/ReactToastify.css";
+// import { toast, ToastContainer } from "react-toastify";
 
 
 export default function NocturnalDeliveryLanding() {
@@ -36,8 +37,8 @@ export default function NocturnalDeliveryLanding() {
   
     console.log(formData)
     setIsModalOpen(false)
-    toast.success("Pedido enviado correctamente 🎉");
-    toast.error("Error de conexión con el servidor 💔");
+    // toast.success("Pedido enviado correctamente 🎉");
+    // toast.error("Error de conexión con el servidor 💔");
     
   };
   
@@ -109,18 +110,7 @@ export default function NocturnalDeliveryLanding() {
         }
       `}</style>
       <div className="min-h-screen bg-black text-white font-sans overflow-hidden">
-      <ToastContainer
-  position="top-right"
-  autoClose={3000}
-  hideProgressBar={false}
-  newestOnTop={false}
-  closeOnClick
-  rtl={false}
-  pauseOnFocusLoss
-  draggable
-  pauseOnHover
-  theme="dark"
-/>
+ 
         <div className="fixed inset-0 z-0">
           {fixedStars.map((star) => (
             <div
